@@ -63,6 +63,6 @@ class CovidChestXray:
         if os.path.isfile(file_path):
             os.remove(file_path)
         file_ = open(file_path, "w")
-        for img_name in tqdm(self.dict_img_name[mode]):
+        for img_name in self.dict_img_name[mode]:
             file_.writelines(img_name)
         file_.close()
