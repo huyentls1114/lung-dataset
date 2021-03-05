@@ -34,5 +34,5 @@ class CovidChestXray:
                 shutil.copy(mask_path, mask_path_output)
                 self.list_img_name.append(img_name)
             except Exception as e:
-                print(img_path)
+                print(mask_name)
                 print(e)
