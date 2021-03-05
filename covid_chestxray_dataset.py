@@ -1,6 +1,9 @@
 import os
 import glob
 import shutil
+import numpy as np
+import random
+import tqdm
 
 class CovidChestXray:
     def __init__(self, input_folder, output_folder):
@@ -9,6 +12,9 @@ class CovidChestXray:
 
         self.init_name()
         self.init_output()
+
+        self.list_img_name = None
+
     def init_name(self):
         self.image_folder = os.path.join(self.input_folder, "images")
         self.mask_folder = os.path.join(self.input_folder, "annotations/lungVAE-masks")
@@ -36,3 +42,27 @@ class CovidChestXray:
             except Exception as e:
                 print(mask_name)
                 print(e)
+
+    def split_train_val(self, train_rate):
+        if self.list_img_name is None:
+            self.list_img_name = os.listdir(self.output_image_folder)
+        assert len(self.list_img_name) >0
+        list_index = np.array(range(len(self.list_img_name)))
+        random.shuffle(list_index)
+
+        list_train  = list_index[:int(len(list_index)*train_rate)]
+        list_valid = list_index[int(len(list_index)*train_rate):]
+
+        self.dict_img_name = {
+            "train": self.list_img_name[list_train],
+            "valid": self.list_img_name[list_valid]
+        }
+
+    def save_txt(self, mode="train"):
+        file_path = os.path.join(self.output_folder, "%s.txt" % mode)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+        file_ = open(file_path, "w")
+        for img_name in tqdm(self.dict_img_name[mode]):
+            file_.writelines(img_name)
+        file_.close()
