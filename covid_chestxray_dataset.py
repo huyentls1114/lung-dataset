@@ -64,5 +64,5 @@ class CovidChestXray:
             os.remove(file_path)
         file_ = open(file_path, "w")
         for img_name in self.dict_img_name[mode]:
-            file_.writelines(img_name)
+            file_.writelines(img_name+"\n")
         file_.close()
