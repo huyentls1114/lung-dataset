@@ -25,7 +25,7 @@ class CovidChestXray:
         self.list_img_name = []
         for mask_name in self.list_mask_names:
             try:
-                img_path = glob.glob(self.image_folder+os.sep+mask_name.replace("_mask.png", "*"))[0]
+                img_path = glob.glob(self.image_folder+os.sep+mask_name.replace("_mask.png", "*").replace(".png", ""))[0]
                 img_name = img_path.split(os.sep)[-1]
                 mask_path = os.path.join(self.mask_folder, mask_name)
                 img_path_output = os.path.join(self.output_image_folder, img_name)
