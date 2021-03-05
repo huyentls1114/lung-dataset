@@ -52,7 +52,7 @@ class CovidChestXray:
 
         list_train  = np.array(list_index[:int(len(list_index)*train_rate)])
         list_valid = np.array(list_index[int(len(list_index)*train_rate):])
-
+        self.list_img_name = np.array(self.list_img_name)
         self.dict_img_name = {
             "train": self.list_img_name[list_train],
             "valid": self.list_img_name[list_valid]
