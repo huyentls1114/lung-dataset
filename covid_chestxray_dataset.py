@@ -12,7 +12,7 @@ class CovidChestXray:
         self.image_folder = os.path.join(self.input_folder, "images")
         self.mask_folder = os.path.join(self.input_folder, "annotations/lungVAE-masks")
         self.list_mask_names = os.listdir(self.mask_folder)
-        self.list_img_names = list(x.replace(".png", ".jpg") for x in self.list_mask_names)
+        self.list_img_names = list(x.replace("_mask.png", ".jpg") for x in self.list_mask_names)
         
 
     
