@@ -25,7 +25,6 @@ class CovidChestXray:
         self.list_img_name = []
         for mask_name in self.list_mask_names:
             try:
-                img_name = mask_name.replace("_mask.png", ".jpg")
                 img_path = glob.glob(self.image_folder+os.sep+mask_name.replace("_mask.png", "*"))[0]
                 img_name = img_path.split(os.sep)[-1]
                 mask_path = os.path.join(self.mask_folder, mask_name)
@@ -35,4 +34,5 @@ class CovidChestXray:
                 shutil.copy(mask_path, mask_path_output)
                 self.list_img_name.append(img_name)
             except Exception as e:
+                print(img_path)
                 print(e)
