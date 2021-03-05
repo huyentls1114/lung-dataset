@@ -50,8 +50,8 @@ class CovidChestXray:
         list_index = np.array(range(len(self.list_img_name)))
         random.shuffle(list_index)
 
-        list_train  = list_index[:int(len(list_index)*train_rate)]
-        list_valid = list_index[int(len(list_index)*train_rate):]
+        list_train  = np.array(list_index[:int(len(list_index)*train_rate)])
+        list_valid = np.array(list_index[int(len(list_index)*train_rate):])
 
         self.dict_img_name = {
             "train": self.list_img_name[list_train],
