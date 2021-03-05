@@ -23,7 +23,7 @@ class CovidChestXray:
 
     def copy_images(self):
         self.list_img_name = []
-        for mask_name in self.list_img_name:
+        for mask_name in self.list_mask_names:
             try:
                 img_name = mask_name.replace("_mask.png", ".jpg")
                 img_path = os.path.join(self.image_folder, mask_name)
